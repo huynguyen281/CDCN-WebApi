@@ -14,4 +14,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SpendingManagement.Data\SpendingManagement.Data.csproj" />
+  </ItemGroup>
+
 </Project>
