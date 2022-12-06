@@ -1,7 +1,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
+using SpendingManagement.Application.Categories;
 using SpendingManagement.Data.EF;
 using SpendingManagement.Data.Entities;
+using SpendingManagement.Repository.Categories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +21,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddIdentity<AppUser, IdentityRole<Guid>>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -28,7 +35,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseStaticFiles(new StaticFileOptions()
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Images\Categories")),
+    RequestPath = new PathString("/Images/Categories")
+});
 app.UseAuthorization();
 
 app.MapControllers();

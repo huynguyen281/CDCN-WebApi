@@ -7,11 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpendingManagement.WebApi",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpendingManagement.Application", "SpendingManagement.Application\SpendingManagement.Application.csproj", "{E440CCCA-742D-45FF-ABA7-8EE9A45DC8C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpendingManagement.Repository", "SpendingManagement.Repository\SpendingManagement.Repository.csproj", "{854B98EE-1C9E-464D-80CD-900FC95BE8CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpendingManagement.Repository", "SpendingManagement.Repository\SpendingManagement.Repository.csproj", "{854B98EE-1C9E-464D-80CD-900FC95BE8CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpendingManagement.Share", "SpendingManagement.Share\SpendingManagement.Share.csproj", "{1C254573-E46A-47BF-8C94-88572BF075C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpendingManagement.Share", "SpendingManagement.Share\SpendingManagement.Share.csproj", "{1C254573-E46A-47BF-8C94-88572BF075C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpendingManagement.Data", "SpendingManagement.Data\SpendingManagement.Data.csproj", "{EC290284-491A-4A6C-92D1-5C63A0221023}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpendingManagement.Data", "SpendingManagement.Data\SpendingManagement.Data.csproj", "{EC290284-491A-4A6C-92D1-5C63A0221023}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpendingManagement.NTest", "SpendingManagement.NTest\SpendingManagement.NTest.csproj", "{0C312655-7536-4BEE-8075-3AA8DB9A1036}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{EC290284-491A-4A6C-92D1-5C63A0221023}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC290284-491A-4A6C-92D1-5C63A0221023}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC290284-491A-4A6C-92D1-5C63A0221023}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C312655-7536-4BEE-8075-3AA8DB9A1036}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C312655-7536-4BEE-8075-3AA8DB9A1036}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C312655-7536-4BEE-8075-3AA8DB9A1036}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C312655-7536-4BEE-8075-3AA8DB9A1036}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
