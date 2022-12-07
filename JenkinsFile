@@ -8,8 +8,7 @@ pipeline {
         }
         stage('Update DB') {
             steps {
-                bat 'cd SpendingManagement/SpendingManagement.Data'
-                bat 'dotnet ef database update'
+                bat 'dotnet ef database update -p SpendingManagement/SpendingManagement.Data'
             }
         }
     }
