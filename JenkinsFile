@@ -6,5 +6,11 @@ pipeline {
                 git branch: 'develop', url: 'https://github.com/huypro020801/CDCN-WebApi.git'
             }
         }
+        stage('Update DB') {
+            steps {
+                bat 'cd SpendingManagement/SpendingManagement.Data'
+                bat 'dotnet ef database update'
+            }
+        }
     }
 }
