@@ -3,12 +3,26 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
+                echo 'PULLING...'
                 git branch: 'develop', url: 'https://github.com/huypro020801/CDCN-WebApi.git'
             }
         }
         stage('Update DB') {
             steps {
+                echo 'UPDATING DATABASE...'
                 bat 'dotnet ef database update -p SpendingManagement/SpendingManagement.Data'
+            }
+        }
+        stage('Run test') {
+            steps {
+                echo 'TESTING...'
+                bat 'dotnet test SpendingManagement/SpendingManagement.NTest/'
+            }
+        }
+        stage('Build project') {
+            steps {
+                echo 'BUILDING...'
+                bat 'dotnet build -c Release SpendingManagement/SpendingManagement.WebApi'
             }
         }
     }
