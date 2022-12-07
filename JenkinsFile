@@ -16,13 +16,13 @@ pipeline {
         stage('Run test') {
             steps {
                 echo 'TESTING...'
-                bat 'dotnet test SpendingManagement/SpendingManagement.NTest/'
+                bat 'dotnet test SpendingManagement/SpendingManagement.NTest/ --nologo'
             }
         }
         stage('Build project') {
             steps {
                 echo 'BUILDING...'
-                bat 'dotnet build -c Release SpendingManagement/SpendingManagement.WebApi'
+                bat 'dotnet build -c Release SpendingManagement/SpendingManagement.WebApi --nologo'
             }
         }
     }
