@@ -1,0 +1,10 @@
+pipeline {
+    agent any
+    stages {
+        stage('Clone') {
+            steps {
+                git branch: 'develop', url: 'https://github.com/huypro020801/CDCN-WebApi.git'
+            }
+        }
+    }
+}
