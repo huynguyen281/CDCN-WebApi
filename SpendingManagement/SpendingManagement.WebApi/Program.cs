@@ -24,7 +24,11 @@ builder.Services.AddIdentity<AppUser, IdentityRole<Guid>>()
 
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-
+builder.Services.AddScoped<IStatisticService, StatisticService>();
+builder.Services.AddScoped<IExpenditureService, ExpenditureService>();
+builder.Services.AddScoped<IExpenditureRepository, ExpenditureRepository>();
+builder.Services.AddScoped<IBudgetService, BudgetService>();
+builder.Services.AddScoped<IBudgetRepository, BudgetRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
