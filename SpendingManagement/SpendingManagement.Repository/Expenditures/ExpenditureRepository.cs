@@ -19,16 +19,16 @@ namespace SpendingManagement.Repository.Expenditures
         {
             return FindAll();
         }
-        public void AddExpenditure(Expenditure expenditure)
+        public async Task AddExpenditure(Expenditure expenditure)
         {
             Add(expenditure);
-            DbContext.SaveChanges();
+            await DbContext.SaveChangesAsync();
         }
 
-        public void UpdateExpenditure(Expenditure expenditure)
+        public async Task UpdateExpenditure(Expenditure expenditure)
         {
             Update(expenditure);
-            DbContext.SaveChanges();
+            await DbContext.SaveChangesAsync();
 
         }
 
@@ -37,10 +37,10 @@ namespace SpendingManagement.Repository.Expenditures
             return FindById(id);
         }
 
-        public void DeleteExpenditure(Guid id)
+        public async Task DeleteExpenditure(Guid id)
         {
             Remove(id);
-            DbContext.SaveChanges();
+            await DbContext.SaveChangesAsync();
         }
     }
 }

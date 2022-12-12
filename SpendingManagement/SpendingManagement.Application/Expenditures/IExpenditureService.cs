@@ -10,9 +10,9 @@ namespace SpendingManagement.Application.Expenditures
 {
     public interface IExpenditureService
     {
-        ApiResultBase<List<ExpenditureResponse>> GetExpendituresOnDate(DateTime? dateTime, Guid id);
-        ApiResultBase<string> CreateExpenditure(CreateExpenditureRequest request);
-        ApiResultBase<string> UpdateExpenditure(UpdateExpenditureRequest request);
-        ApiResultBase<string> DeleteExpenditure(Guid id);
+        Task<ApiResultBase<List<ExpenditureResponse>>> GetExpendituresOnDate(DateTime? dateTime, Guid id);
+        Task<ApiResultBase<string>> CreateExpenditure(CreateExpenditureRequest request);
+        Task<ApiResultBase<string>> UpdateExpenditure(UpdateExpenditureRequest request);
+        Task<ApiResultBase<string>> DeleteExpenditure(Guid id);
     }
 }

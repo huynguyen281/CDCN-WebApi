@@ -21,7 +21,7 @@ namespace SpendingManagement.Application.Expenditures
             _expenditureRepository = expenditureRepository;
         }
 
-        public ApiResultBase<string> CreateExpenditure(CreateExpenditureRequest request)
+        public async Task<ApiResultBase<string>> CreateExpenditure(CreateExpenditureRequest request)
         {
             var expenditure = new Expenditure()
             {
@@ -32,17 +32,17 @@ namespace SpendingManagement.Application.Expenditures
                 DateCreate = DateTime.ParseExact(request.CreationDate, "dd-MM-yyyy", CultureInfo.GetCultureInfo("tr-TR")),
                 Id = Guid.NewGuid()
             };
-            _expenditureRepository.AddExpenditure(expenditure);
+            await _expenditureRepository.AddExpenditure(expenditure);
             return new ApiSuccessResult<string>(message: "Thêm thành công");
         }
 
-        public ApiResultBase<List<ExpenditureResponse>> GetExpendituresOnDate(DateTime? dateTime, Guid id)
+        public async Task<ApiResultBase<List<ExpenditureResponse>>> GetExpendituresOnDate(DateTime? dateTime, Guid id)
         {
-            if(dateTime == null)
+            if (dateTime == null)
             {
                 dateTime = DateTime.Now;
             }
-            var result = _expenditureRepository.GetAllExpenditures()
+            var result = await _expenditureRepository.GetAllExpenditures()
                 .Where(x => x.DateCreate == dateTime && x.AppUserId == id)
                 .Include(x => x.Category)
                 .Select(x => new ExpenditureResponse()
@@ -57,14 +57,14 @@ namespace SpendingManagement.Application.Expenditures
                     CategoryName = x.Category.Name,
                     CategoryId = x.CategoryId
                 }
-                ).ToList();
+                ).ToListAsync();
             return new ApiSuccessResult<List<ExpenditureResponse>>(resultObj: result);
         }
 
-        public ApiResultBase<string> UpdateExpenditure(UpdateExpenditureRequest request)
+        public async Task<ApiResultBase<string>> UpdateExpenditure(UpdateExpenditureRequest request)
         {
             var expenditure = _expenditureRepository.GetExpenditureById(request.Id);
-            if(expenditure == null)
+            if (expenditure == null)
             {
                 return new ApiErrorResult<string>(message: "Không cập nhật thành công");
             }
@@ -72,12 +72,12 @@ namespace SpendingManagement.Application.Expenditures
             expenditure.DateCreate = DateTime.ParseExact(request.DateCreation, "dd-MM-yyyy", CultureInfo.GetCultureInfo("tr-TR"));
             expenditure.Note = request.Note;
             expenditure.Cost = request.Cost;
-            _expenditureRepository.UpdateExpenditure(expenditure);
+            await _expenditureRepository.UpdateExpenditure(expenditure);
             return new ApiSuccessResult<string>(message: "Cập nhật thành công");
         }
-        public ApiResultBase<string> DeleteExpenditure(Guid id)
+        public async Task<ApiResultBase<string>> DeleteExpenditure(Guid id)
         {
-            _expenditureRepository.DeleteExpenditure(id);
+            await _expenditureRepository.DeleteExpenditure(id);
             return new ApiSuccessResult<string>(message: "Xóa thành công");
         }
     }
