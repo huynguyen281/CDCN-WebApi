@@ -10,10 +10,10 @@ namespace SpendingManagement.Repository.Expenditures
     public interface IExpenditureRepository
     {
         IQueryable<Expenditure> GetAllExpenditures();
-        void AddExpenditure(Expenditure expenditure);
-        void UpdateExpenditure(Expenditure expenditure);
+        Task AddExpenditure(Expenditure expenditure);
+        Task UpdateExpenditure(Expenditure expenditure);
 
         Expenditure? GetExpenditureById(Guid id);
-        void DeleteExpenditure(Guid id);
+        Task DeleteExpenditure(Guid id);
     }
 }
