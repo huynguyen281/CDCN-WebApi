@@ -41,6 +41,9 @@ namespace SpendingManagement.Application.Categories
                     LinkIcon = x.LinkIcon,
                     TypeOfCategoryName = TypeCategoryNameGenerator.GenerateName(x.TypeOfCategory)
                 }).ToList();
+            var itemDefault = result.Find(x => x.LinkIcon.Contains("default.png"));
+            int numberItemRemoved = result.RemoveAll(x => x.LinkIcon.Contains("default.png"));
+            result.Add(itemDefault);
             return new ApiSuccessResult<List<CategoryResponse>>(resultObj: result);
 
         }
