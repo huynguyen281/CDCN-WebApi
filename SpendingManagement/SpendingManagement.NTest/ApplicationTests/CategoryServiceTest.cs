@@ -1,15 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore.Query.Internal;
-using Moq;
+﻿using Moq;
 using SpendingManagement.Application.Categories;
 using SpendingManagement.Data.Entities;
 using SpendingManagement.Repository.Categories;
-using SpendingManagement.Share.ApiResults;
 using SpendingManagement.Share.TypeOfCategory;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpendingManagement.NTest.ApplicationTests
 {
@@ -29,17 +22,17 @@ namespace SpendingManagement.NTest.ApplicationTests
                 {
                     Id = new Guid("a76b02b9-4877-4c27-8133-9de232a6f58b"),
                     Description = "des1",
-                    LinkIcon = "/link1",
+                    LinkIcon = "/default.png",
                     Name = "Name1",
-                    TypeOfCategory = Share.TypeOfCategory.CategoryType.In
+                    TypeOfCategory = CategoryType.In
                 },
                 new Category()
                 {
                     Id = new Guid("536ef712-dd64-4c2d-9719-b7f2c248ed8d"),
                     Description = "des2",
-                    LinkIcon = "/link2",
+                    LinkIcon = "/default.png",
                     Name = "Name2",
-                    TypeOfCategory = Share.TypeOfCategory.CategoryType.Out
+                    TypeOfCategory = CategoryType.Out
                 }
             };
             _categoryRepositoryMock = new Mock<ICategoryRepository>();
@@ -50,7 +43,7 @@ namespace SpendingManagement.NTest.ApplicationTests
         public void GetCateByType_TypeIn_ReturnApiSuccessWithAllCateTypeIn()
         {
             //arrange
-            CategoryType type = CategoryType.In;
+            CategoryType type = CategoryType.Out;
             //act
             var result = _categoryService.GetCategoriesByCategoryType(type);
             //assert
@@ -68,6 +61,6 @@ namespace SpendingManagement.NTest.ApplicationTests
             Assert.IsNotNull(result);
             Assert.That(true, Is.EqualTo(result.IsSuccessed));
             Assert.That(2, Is.EqualTo(result.ResultObj.Count()));
-        }    
+        }
     }
 }

@@ -42,8 +42,8 @@ namespace SpendingManagement.Application.Expenditures
             {
                 dateTime = DateTime.Now;
             }
-            var result = await _expenditureRepository.GetAllExpenditures()
-                .Where(x => x.DateCreate == dateTime && x.AppUserId == id)
+            var result = _expenditureRepository.GetAllExpenditures()
+                .Where(x => x.DateCreate.ToString("dd-MM-yyyy").Equals(dateTime.Value.ToString("dd-MM-yyyy")) && x.AppUserId == id)
                 .Include(x => x.Category)
                 .Select(x => new ExpenditureResponse()
                 {
@@ -57,7 +57,7 @@ namespace SpendingManagement.Application.Expenditures
                     CategoryName = x.Category.Name,
                     CategoryId = x.CategoryId
                 }
-                ).ToListAsync();
+                ).ToList();
             return new ApiSuccessResult<List<ExpenditureResponse>>(resultObj: result);
         }
 
@@ -75,6 +75,7 @@ namespace SpendingManagement.Application.Expenditures
             await _expenditureRepository.UpdateExpenditure(expenditure);
             return new ApiSuccessResult<string>(message: "Cập nhật thành công");
         }
+        
         public async Task<ApiResultBase<string>> DeleteExpenditure(Guid id)
         {
             await _expenditureRepository.DeleteExpenditure(id);

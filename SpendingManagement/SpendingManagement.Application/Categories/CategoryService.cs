@@ -31,14 +31,14 @@ namespace SpendingManagement.Application.Categories
 
         public ApiResultBase<List<CategoryResponse>> GetCategoriesByCategoryType(CategoryType categoryType)
         {
-            var result = _categoryRepository.GetAllCategory().Where(x => x.TypeOfCategory == categoryType)
+            var result = _categoryRepository.GetAllCategory().Where(x => x.TypeOfCategory.Equals(categoryType))
                 .Select(x => new CategoryResponse()
                 {
                     Id = x.Id,
                     CategoryType = x.TypeOfCategory,
                     Description = x.Description,
                     Name = x.Name,
-                    LinkIcon = x.LinkIcon,
+                    LinkIcon = string.IsNullOrWhiteSpace(x.LinkIcon) ? "" : x.LinkIcon,
                     TypeOfCategoryName = TypeCategoryNameGenerator.GenerateName(x.TypeOfCategory)
                 }).ToList();
             var itemDefault = result.Find(x => x.LinkIcon.Contains("default.png"));
